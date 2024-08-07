@@ -2,7 +2,6 @@ package com.example.Portal.Model;
 
 public class User {
 
-    private Long userID;
     private String firstName;
     private String lastName;
     private String company;
@@ -12,15 +11,6 @@ public class User {
     private String role;
 
     // Getters and Setters
-
-    public Long getUserID() {
-        return userID;
-    }
-
-    public void setUserID(Long userID) {
-        this.userID = userID;
-    }
-
     public String getFirstName() {
         return firstName;
     }

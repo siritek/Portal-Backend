@@ -43,7 +43,6 @@ public class UserServiceImpl implements UserService {
 
                 while (rs.next()) {
                     User user = new User();
-                    user.setUserID(rs.getLong("UserID"));
                     user.setFirstName(rs.getString("FirstName"));
                     user.setLastName(rs.getString("LastName"));
                     user.setCompany(rs.getString("Company"));
@@ -70,7 +69,6 @@ public class UserServiceImpl implements UserService {
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next()) {
                         user = new User();
-                        user.setUserID(rs.getLong("UserID"));
                         user.setFirstName(rs.getString("FirstName"));
                         user.setLastName(rs.getString("LastName"));
                         user.setCompany(rs.getString("Company"));
@@ -99,7 +97,6 @@ public class UserServiceImpl implements UserService {
                 ps.setString(5, user.getPassword());  // Ensure password is hashed
                 ps.setString(6, user.getEmail());
                 ps.setString(7, user.getRole());
-                ps.setLong(8, user.getUserID());
 
                 ps.executeUpdate();
             }
