@@ -53,6 +53,12 @@ public class EmployeeServiceImpl implements EmployeeService {
             ps.setString(8, checkString(employee.getHomeAddress(), "HomeAddress"));
             ps.setString(9, checkString(employee.getMaritalStatus(), "MaritalStatus"));
             ps.setString(10, checkString(employee.getCompany(), "Company"));
+            ps.setString(11,checkString(employee.getDrivingLicense(), "DrivingLicense"));
+            ps.setString(12,checkString(employee.getDrivingLicenseExpiryDate(), "LicenseExpDate"));
+            ps.setString(13,checkString(employee.getPassportNumber(), "PassportNumber"));
+            ps.setString(14,checkString(employee.getPassportExpiryDate(), "PassportExpDate"));
+            ps.setString(15,checkString(employee.getVisaStatus(), "VisaStatus"));
+            ps.setString(16,checkString(employee.getVisaExpiryDate(), "VisaExpDate"));
 
             ps.executeUpdate();
 
@@ -99,6 +105,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 employee.setHomeAddress(rs.getString("HomeAddress"));
                 employee.setMaritalStatus(rs.getString("MaritalStatus"));
                 employee.setCompany(rs.getString("Company"));
+
 
                 employees.add(employee);
             }

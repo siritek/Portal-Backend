@@ -117,39 +117,146 @@ public class Employee {
     private String MaritalStatus;
     private String UserID;
     private String Company;
+    private String DrivingLicense;
+    private String DrivingLicenseExpiryDate;
+    private String PassportNumber;
+    private String PassportExpiryDate;
+    private String VisaStatus;
+    private String VisaExpiryDate;
 
-    // Getters and Setters
+    public String getEmployeeID() {
+        return EmployeeID;
+    }
 
-    public String getEmployeeID() { return EmployeeID; }
-    public void setEmployeeID(String employeeID) { EmployeeID = employeeID; }
+    public void setEmployeeID(String employeeID) {
+        EmployeeID = employeeID;
+    }
 
-    public String getFirstName() { return FirstName; }
-    public void setFirstName(String firstName) { FirstName = firstName; }
+    public String getFirstName() {
+        return FirstName;
+    }
 
-    public String getLastName() { return LastName; }
-    public void setLastName(String lastName) { LastName = lastName; }
+    public void setFirstName(String firstName) {
+        FirstName = firstName;
+    }
 
-    public String getDOB() { return DOB; }
-    public void setDOB(String DOB) { this.DOB = DOB; }
+    public String getLastName() {
+        return LastName;
+    }
 
-    public String getPersonalEmail() { return PersonalEmail; }
-    public void setPersonalEmail(String personalEmail) { PersonalEmail = personalEmail; }
+    public void setLastName(String lastName) {
+        LastName = lastName;
+    }
 
-    public String getSSN() { return SSN; }
-    public void setSSN(String SSN) { this.SSN = SSN; }
+    public String getDOB() {
+        return DOB;
+    }
 
-    public String getPhoneNumber() { return PhoneNumber; }
-    public void setPhoneNumber(String phoneNumber) { PhoneNumber = phoneNumber; }
+    public void setDOB(String DOB) {
+        this.DOB = DOB;
+    }
 
-    public String getHomeAddress() { return HomeAddress; }
-    public void setHomeAddress(String homeAddress) { HomeAddress = homeAddress; }
+    public String getPersonalEmail() {
+        return PersonalEmail;
+    }
 
-    public String getMaritalStatus() { return MaritalStatus; }
-    public void setMaritalStatus(String maritalStatus) { MaritalStatus = maritalStatus; }
+    public void setPersonalEmail(String personalEmail) {
+        PersonalEmail = personalEmail;
+    }
 
-    public String getUserID() { return UserID; }
-    public void setUserID(String userID) { UserID = userID; }
+    public String getSSN() {
+        return SSN;
+    }
 
-    public String getCompany() { return Company; }
-    public void setCompany(String company) { Company = company; }
+    public void setSSN(String SSN) {
+        this.SSN = SSN;
+    }
+
+    public String getPhoneNumber() {
+        return PhoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        PhoneNumber = phoneNumber;
+    }
+
+    public String getHomeAddress() {
+        return HomeAddress;
+    }
+
+    public void setHomeAddress(String homeAddress) {
+        HomeAddress = homeAddress;
+    }
+
+    public String getMaritalStatus() {
+        return MaritalStatus;
+    }
+
+    public void setMaritalStatus(String maritalStatus) {
+        MaritalStatus = maritalStatus;
+    }
+
+    public String getUserID() {
+        return UserID;
+    }
+
+    public void setUserID(String userID) {
+        UserID = userID;
+    }
+
+    public String getCompany() {
+        return Company;
+    }
+
+    public void setCompany(String company) {
+        Company = company;
+    }
+
+    public String getDrivingLicense() {
+        return DrivingLicense;
+    }
+
+    public void setDrivingLicense(String drivingLicense) {
+        DrivingLicense = drivingLicense;
+    }
+
+    public String getDrivingLicenseExpiryDate() {
+        return DrivingLicenseExpiryDate;
+    }
+
+    public void setDrivingLicenseExpiryDate(String drivingLicenseExpiryDate) {
+        DrivingLicenseExpiryDate = drivingLicenseExpiryDate;
+    }
+
+    public String getPassportNumber() {
+        return PassportNumber;
+    }
+
+    public void setPassportNumber(String passportNumber) {
+        PassportNumber = passportNumber;
+    }
+
+    public String getPassportExpiryDate() {
+        return PassportExpiryDate;
+    }
+
+    public void setPassportExpiryDate(String passportExpiryDate) {
+        PassportExpiryDate = passportExpiryDate;
+    }
+
+    public String getVisaStatus() {
+        return VisaStatus;
+    }
+
+    public void setVisaStatus(String visaStatus) {
+        VisaStatus = visaStatus;
+    }
+
+    public String getVisaExpiryDate() {
+        return VisaExpiryDate;
+    }
+
+    public void setVisaExpiryDate(String visaExpiryDate) {
+        VisaExpiryDate = visaExpiryDate;
+    }
 }

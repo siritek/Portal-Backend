@@ -2,42 +2,40 @@ package com.example.Portal.Model;
 
 public class Spouse {
 
-   private String FirstName;
-   private String LastName;
-    private String DOB;
-    private String SSN;
+   private String firstName;
+   private String lastName;
+    private String dob;
+    private String ssn;
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        FirstName = firstName;
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        this.lastName = lastName;
     }
 
-    public String getDOB() {
-        return DOB;
+    public String getDob() {
+        return dob;
     }
 
-    public void setDOB(String DOB) {
-        this.DOB = DOB;
+    public void setDob(String dob) {
+        this.dob = dob;
     }
 
-    public String getSSN() {
-        return SSN;
+    public String getSsn() {
+        return ssn;
     }
 
-    public void setSSN(String SSN) {
-        this.SSN = SSN;
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
     }
-
-
 }

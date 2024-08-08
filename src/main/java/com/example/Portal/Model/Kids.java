@@ -1,40 +1,40 @@
 package com.example.Portal.Model;
 
 public class Kids {
-    private String FirstName;
-    private String LastName;
-    private String DOB;
-    private String SSN;
+    private String firstName;
+    private String lastName;
+    private String dob;
+    private String ssn;
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        FirstName = firstName;
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        this.lastName = lastName;
     }
 
     public String getDOB() {
-        return DOB;
+        return dob;
     }
 
     public void setDOB(String DOB) {
-        this.DOB = DOB;
+        this.dob = DOB;
     }
 
     public String getSSN() {
-        return SSN;
+        return ssn;
     }
 
     public void setSSN(String SSN) {
-        this.SSN = SSN;
+        this.ssn = SSN;
     }
 }
