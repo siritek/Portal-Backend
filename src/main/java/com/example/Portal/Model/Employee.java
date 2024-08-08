@@ -117,12 +117,24 @@ public class Employee {
     private String MaritalStatus;
     private String UserID;
     private String Company;
-    private String DrivingLicense;
+    private String DrivingLicenseNumber;
     private String DrivingLicenseExpiryDate;
     private String PassportNumber;
     private String PassportExpiryDate;
     private String VisaStatus;
     private String VisaExpiryDate;
+
+    private String Kids;
+
+    public String getKids() {
+        return Kids;
+    }
+
+    public void setKids(String kids) {
+        Kids = kids;
+    }
+
+
 
     public String getEmployeeID() {
         return EmployeeID;
@@ -212,12 +224,12 @@ public class Employee {
         Company = company;
     }
 
-    public String getDrivingLicense() {
-        return DrivingLicense;
+    public String getDrivingLicenseNumber() {
+        return DrivingLicenseNumber;
     }
 
-    public void setDrivingLicense(String drivingLicense) {
-        DrivingLicense = drivingLicense;
+    public void setDrivingLicenseNumber(String drivingLicenseNumber) {
+        DrivingLicenseNumber = drivingLicenseNumber;
     }
 
     public String getDrivingLicenseExpiryDate() {

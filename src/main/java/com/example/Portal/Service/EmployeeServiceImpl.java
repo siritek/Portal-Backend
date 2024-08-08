@@ -29,7 +29,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 throw new SQLException("Failed to establish a database connection");
             }
 
-            String sql = "INSERT INTO employee (EmployeeID, FirstName, LastName, DOB, PersonalEmail, SSN, PhoneNumber, HomeAddress, MaritalStatus, Company) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO employee (EmployeeID, FirstName, LastName, DOB, PersonalEmail, SSN, PhoneNumber, HomeAddress, MaritalStatus, Company, DrivingLicenseNumber, LicenseExpDate, PassportNumber, PassportExpDate, VisaStatus, VisaExpDate, Kids, UserID) VALUES (?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)";
             ps = con.prepareStatement(sql);
 
             ps.setString(1, checkString(employee.getEmployeeID(), "EmployeeID"));
@@ -53,12 +53,14 @@ public class EmployeeServiceImpl implements EmployeeService {
             ps.setString(8, checkString(employee.getHomeAddress(), "HomeAddress"));
             ps.setString(9, checkString(employee.getMaritalStatus(), "MaritalStatus"));
             ps.setString(10, checkString(employee.getCompany(), "Company"));
-            ps.setString(11,checkString(employee.getDrivingLicense(), "DrivingLicense"));
+            ps.setString(11,checkString(employee.getDrivingLicenseNumber(), "DrivingLicenseNumber"));
             ps.setString(12,checkString(employee.getDrivingLicenseExpiryDate(), "LicenseExpDate"));
             ps.setString(13,checkString(employee.getPassportNumber(), "PassportNumber"));
             ps.setString(14,checkString(employee.getPassportExpiryDate(), "PassportExpDate"));
             ps.setString(15,checkString(employee.getVisaStatus(), "VisaStatus"));
             ps.setString(16,checkString(employee.getVisaExpiryDate(), "VisaExpDate"));
+            ps.setString(17,checkString(employee.getKids(), "Kids"));
+            ps.setString(17,checkString(employee.getUserID(), "UserID"));
 
             ps.executeUpdate();
 
