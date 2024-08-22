@@ -2,6 +2,7 @@ package com.example.Portal.Service;
 
 import com.example.Portal.Model.Employee;
 import com.example.Portal.Service.DBConn;  // Ensure you import or create this class for database connections
+import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
@@ -29,7 +31,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 throw new SQLException("Failed to establish a database connection");
             }
 
-            String sql = "INSERT INTO employee (EmployeeID, FirstName, LastName, DOB, PersonalEmail, SSN, PhoneNumber, HomeAddress, MaritalStatus, Company, DrivingLicenseNumber, LicenseExpDate, PassportNumber, PassportExpDate, VisaStatus, VisaExpDate, Kids, UserID) VALUES (?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO employee (EmployeeID, FirstName, LastName, DOB, PersonalEmail, SSN, PhoneNumber, HomeAddress, MaritalStatus, Company, DrivingLicenseNumber, LicenseExpDate, PassportNumber, PassportExpDate, VisaStatus, VisaExpDate, Kids ) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)";
             ps = con.prepareStatement(sql);
 
             ps.setString(1, checkString(employee.getEmployeeID(), "EmployeeID"));
@@ -60,7 +62,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             ps.setString(15,checkString(employee.getVisaStatus(), "VisaStatus"));
             ps.setString(16,checkString(employee.getVisaExpiryDate(), "VisaExpDate"));
             ps.setString(17,checkString(employee.getKids(), "Kids"));
-            ps.setString(17,checkString(employee.getUserID(), "UserID"));
+
 
             ps.executeUpdate();
 
