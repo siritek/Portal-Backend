@@ -4,10 +4,7 @@ import com.example.Portal.Model.Employee;
 import com.example.Portal.Service.DBConn;  // Ensure you import or create this class for database connections
 import org.springframework.stereotype.Service;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.text.ParseException;
@@ -112,7 +109,9 @@ public class EmployeeServiceImpl implements EmployeeService {
             }
 
             // Generate EmployeeID - assuming a prefix "EMP" and a unique identifier
-            String employeeID = "EMP" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+           // String employeeID = "EMP" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+            // Generate EmployeeID
+           String employeeId = generateEmployeeID(con);
 
             // Hardcode the Company field
             String company = "Siritek";
@@ -121,7 +120,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             ps = con.prepareStatement(sql);
 
             // Set the auto-generated EmployeeID
-            ps.setString(1, employeeID);
+            ps.setString(1, employeeId);
             ps.setString(2, checkString(employee.getFirstName(), "FirstName"));
             ps.setString(3, checkString(employee.getLastName(), "LastName"));
 
@@ -184,7 +183,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
             ps.executeUpdate();
 
-            return employeeID; // Return the generated EmployeeID
+            return employeeId; // Return the generated EmployeeID
 
         } catch (SQLException | ParseException e) {
             System.out.println("Exception in saveEmployee method: " + e);
@@ -200,6 +199,19 @@ public class EmployeeServiceImpl implements EmployeeService {
         return null;
     }
 
+
+    // Method to generate EmployeeID
+    private String generateEmployeeID(Connection con) throws SQLException {
+        String prefix = "SIRIN";
+        String query = "SELECT COUNT(*) FROM employee";
+        try (Statement stmt = con.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+            if (rs.next()) {
+                int count = rs.getInt(1) + 1;
+                return prefix + String.format("%03d", count); // Generates EmployeeID like EMP001, EMP002, etc.
+            }
+        }
+        return prefix + "001"; // Default EmployeeID if table is empty
+    }
 
 //    @Override
 //    public String saveEmployee(Employee employee) {
