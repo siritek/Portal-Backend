@@ -3,8 +3,9 @@ package com.example.Portal.Model;
 public class Kids {
     private String firstName;
     private String lastName;
-    private String dob;
+    private String dateOfBirth;
     private String ssn;
+
 
     public String getFirstName() {
         return firstName;
@@ -22,19 +23,19 @@ public class Kids {
         this.lastName = lastName;
     }
 
-    public String getDOB() {
-        return dob;
+    public String getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDOB(String DOB) {
-        this.dob = DOB;
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
-    public String getSSN() {
+    public String getSsn() {
         return ssn;
     }
 
-    public void setSSN(String SSN) {
-        this.ssn = SSN;
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
     }
 }

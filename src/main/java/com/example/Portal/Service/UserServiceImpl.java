@@ -175,10 +175,7 @@ import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -194,6 +191,89 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+//    public void saveUser(User user) {
+//        Connection con = null;
+//        PreparedStatement psUser = null;
+//        PreparedStatement psEmployee = null;
+//
+//        ResultSet rs = null;
+//
+//        try {
+//            con = DBConn.getMyConnection();
+//            con.setAutoCommit(false); // Start transaction
+//
+//            // Save user details in 'users' table
+//            String queryUser = "INSERT INTO users (FirstName, LastName, Company, Username, Password, Email, Role) VALUES (?, ?, ?, ?, ?, ?, ?)";
+//            psUser = con.prepareStatement(queryUser, Statement.RETURN_GENERATED_KEYS);
+//
+//            psUser.setString(1, user.getFirstName());
+//            psUser.setString(2, user.getLastName());
+//            psUser.setString(3, user.getCompany());
+//            psUser.setString(4, user.getUsername());
+//            psUser.setString(5, passwordEncoder.encode(user.getPassword()));
+//            psUser.setString(6, user.getEmail());
+//            psUser.setString(7, user.getRole());
+//
+//            psUser.executeUpdate();
+//
+//            // Get the generated UserID
+//            rs = psUser.getGeneratedKeys();
+//            long userId = 0;
+//            if (rs.next()) {
+//                userId = rs.getLong(1); // Capture the auto-generated UserID
+//            }
+//
+//            // Generate EmployeeID
+//            String employeeId = generateEmployeeID(con);
+//
+//            // Save corresponding employee details in 'employee' table
+//            String queryEmployee = "INSERT INTO employee (EmployeeID, Company, UserID) VALUES (?, ?, ?)";
+//            psEmployee = con.prepareStatement(queryEmployee);
+//
+//            psEmployee.setString(1, employeeId);
+//           // psEmployee.setString(2, user.getFirstName());
+//           // psEmployee.setString(3, user.getLastName());
+//            psEmployee.setString(4, user.getCompany());
+//            psEmployee.setLong(5, userId); // Use the auto-generated UserID
+//
+//            psEmployee.executeUpdate();
+//
+//            con.commit(); // Commit transaction
+//
+//        } catch (SQLException e) {
+//            if (con != null) {
+//                try {
+//                    con.rollback(); // Rollback transaction in case of failure
+//                } catch (SQLException ex) {
+//                    logger.error("Failed to rollback transaction", ex);
+//                }
+//            }
+//            logger.error("Exception in saveUser: ", e);
+//        } finally {
+//            try {
+//                if (rs != null) rs.close();
+//                if (psUser != null) psUser.close();
+//                if (psEmployee != null) psEmployee.close();
+//                if (con != null) con.close();
+//            } catch (SQLException e) {
+//                logger.error("Exception closing resources: ", e);
+//            }
+//        }
+//    }
+
+    // Method to generate EmployeeID
+//    private String generateEmployeeID(Connection con) throws SQLException {
+//        String prefix = "SIRIN";
+//        String query = "SELECT COUNT(*) FROM employee";
+//        try (Statement stmt = con.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+//            if (rs.next()) {
+//                int count = rs.getInt(1) + 1;
+//                return prefix + String.format("%03d", count); // Generates EmployeeID like EMP001, EMP002, etc.
+//            }
+//        }
+//        return prefix + "001"; // Default EmployeeID if table is empty
+//    }
+
     public void saveUser(User user) {
         try (Connection con = DBConn.getMyConnection()) {
             String query = "INSERT INTO users (FirstName, LastName, Company, Username, Password, Email, Role) VALUES (?, ?, ?, ?, ?, ?, ?)";

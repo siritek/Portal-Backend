@@ -105,170 +105,155 @@
 
 package com.example.Portal.Model;
 
+import java.util.List;
+
 public class Employee {
-    private String EmployeeID;
-    private String FirstName;
-    private String LastName;
-    private String DOB;
-    private String PersonalEmail;
-    private String SSN;
-    private String PhoneNumber;
-    private String HomeAddress;
-    private String MaritalStatus;
-    private String UserID;
-    private String Company;
-    private String DrivingLicenseNumber;
-    private String DrivingLicenseExpiryDate;
-    private String PassportNumber;
-    private String PassportExpiryDate;
-    private String VisaStatus;
-    private String VisaExpiryDate;
 
-    private String Kids;
 
-    public String getKids() {
-        return Kids;
-    }
+    private String employeeID;
+    private String firstName;
+    private String lastName;
+    private String dob;
+    private String personalEmail;
+    private String ssn;
+    private String phoneNumber;
+    private String homeAddress;
+    private String maritalStatus;
 
-    public void setKids(String kids) {
-        Kids = kids;
-    }
-
+    private String drivingLicenseNumber;
+    private String drivingLicenseExpiryDate;
+    private String passportNumber;
+    private String passportExpiryDate;
+    private String visaStatus;
+    private String visaExpiryDate;
+    private String company;
 
 
     public String getEmployeeID() {
-        return EmployeeID;
+        return employeeID;
     }
 
-    public void setEmployeeID(String employeeID) {
-        EmployeeID = employeeID;
-    }
+//    public void setEmployeeID(String employeeID) {
+//        this.employeeID = employeeID;
+//    }
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        FirstName = firstName;
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        this.lastName = lastName;
     }
 
-    public String getDOB() {
-        return DOB;
+    public String getDob() {
+        return dob;
     }
 
-    public void setDOB(String DOB) {
-        this.DOB = DOB;
+    public void setDob(String dob) {
+        this.dob = dob;
     }
 
     public String getPersonalEmail() {
-        return PersonalEmail;
+        return personalEmail;
     }
 
     public void setPersonalEmail(String personalEmail) {
-        PersonalEmail = personalEmail;
+        this.personalEmail = personalEmail;
     }
 
-    public String getSSN() {
-        return SSN;
+    public String getSsn() {
+        return ssn;
     }
 
-    public void setSSN(String SSN) {
-        this.SSN = SSN;
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
     }
 
     public String getPhoneNumber() {
-        return PhoneNumber;
+        return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        PhoneNumber = phoneNumber;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getHomeAddress() {
-        return HomeAddress;
+        return homeAddress;
     }
 
     public void setHomeAddress(String homeAddress) {
-        HomeAddress = homeAddress;
+        this.homeAddress = homeAddress;
     }
 
     public String getMaritalStatus() {
-        return MaritalStatus;
+        return maritalStatus;
     }
 
     public void setMaritalStatus(String maritalStatus) {
-        MaritalStatus = maritalStatus;
-    }
-
-    public String getUserID() {
-        return UserID;
-    }
-
-    public void setUserID(String userID) {
-        UserID = userID;
-    }
-
-    public String getCompany() {
-        return Company;
-    }
-
-    public void setCompany(String company) {
-        Company = company;
+        this.maritalStatus = maritalStatus;
     }
 
     public String getDrivingLicenseNumber() {
-        return DrivingLicenseNumber;
+        return drivingLicenseNumber;
     }
 
     public void setDrivingLicenseNumber(String drivingLicenseNumber) {
-        DrivingLicenseNumber = drivingLicenseNumber;
+        this.drivingLicenseNumber = drivingLicenseNumber;
     }
 
     public String getDrivingLicenseExpiryDate() {
-        return DrivingLicenseExpiryDate;
+        return drivingLicenseExpiryDate;
     }
 
     public void setDrivingLicenseExpiryDate(String drivingLicenseExpiryDate) {
-        DrivingLicenseExpiryDate = drivingLicenseExpiryDate;
+        this.drivingLicenseExpiryDate = drivingLicenseExpiryDate;
     }
 
     public String getPassportNumber() {
-        return PassportNumber;
+        return passportNumber;
     }
 
     public void setPassportNumber(String passportNumber) {
-        PassportNumber = passportNumber;
+        this.passportNumber = passportNumber;
     }
 
     public String getPassportExpiryDate() {
-        return PassportExpiryDate;
+        return passportExpiryDate;
     }
 
     public void setPassportExpiryDate(String passportExpiryDate) {
-        PassportExpiryDate = passportExpiryDate;
+        this.passportExpiryDate = passportExpiryDate;
     }
 
     public String getVisaStatus() {
-        return VisaStatus;
+        return visaStatus;
     }
 
     public void setVisaStatus(String visaStatus) {
-        VisaStatus = visaStatus;
+        this.visaStatus = visaStatus;
     }
 
     public String getVisaExpiryDate() {
-        return VisaExpiryDate;
+        return visaExpiryDate;
     }
 
     public void setVisaExpiryDate(String visaExpiryDate) {
-        VisaExpiryDate = visaExpiryDate;
+        this.visaExpiryDate = visaExpiryDate;
     }
+
+    public String getCompany() {
+        return company;
+    }
+
+//    public void setCompany(String company) {
+//        this.company = company;
+//    }
 }

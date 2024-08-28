@@ -1,6 +1,8 @@
 package com.example.Portal.Service;
 
 import com.example.Portal.Model.Spouse;
+import org.springframework.stereotype.Service;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class SpouseServiceImpl implements SpouseService {
 
     @Override
@@ -17,10 +20,10 @@ public class SpouseServiceImpl implements SpouseService {
         try (Connection con = DBConn.getMyConnection()) {
             String query = "INSERT INTO spouse (FirstName, LastName, DOB, SSN) VALUES (?, ?, ?, ?)";
             try (PreparedStatement ps = con.prepareStatement(query)) {
-                ps.setString(1, spouse.getFirstName());
-                ps.setString(2, spouse.getLastName());
+                ps.setString(1, spouse.getSpouseFirstName());
+                ps.setString(2, spouse.getSpouseLastName());
 
-                String dobString = spouse.getDob();
+                String dobString = spouse.getSpouseDateOfBirth();
                 if (dobString != null) {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                     java.util.Date date = sdf.parse(dobString);
@@ -29,7 +32,7 @@ public class SpouseServiceImpl implements SpouseService {
                 } else {
                     ps.setNull(3, java.sql.Types.DATE);
                 }
-                ps.setString(4, spouse.getSsn());
+                ps.setString(4, spouse.getSpouseSSN());
 
                 ps.executeUpdate();
             } catch (ParseException e) {
@@ -52,8 +55,8 @@ public class SpouseServiceImpl implements SpouseService {
 
                 while (rs.next()) {
                     Spouse spouse = new Spouse();
-                    spouse.setFirstName(rs.getString("FirstName"));
-                    spouse.setLastName(rs.getString("LastName"));
+                    spouse.setSpouseFirstName(rs.getString("FirstName"));
+                    spouse.setSpouseLastName(rs.getString("LastName"));
                     spouses.add(spouse);
                 }
             }
@@ -73,8 +76,8 @@ public class SpouseServiceImpl implements SpouseService {
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next()) {
                         spouse = new Spouse();
-                        spouse.setFirstName(rs.getString("FirstName"));
-                        spouse.setLastName(rs.getString("LastName"));
+                        spouse.setSpouseFirstName(rs.getString("FirstName"));
+                        spouse.setSpouseLastName(rs.getString("LastName"));
 
                     }
                 }
@@ -90,8 +93,8 @@ public class SpouseServiceImpl implements SpouseService {
         try (Connection con = DBConn.getMyConnection()) {
             String query = "UPDATE spouses SET FirstName = ?, LastName = ?, DOB = ?, SSN = ? WHERE SpouseID = ?";
             try (PreparedStatement ps = con.prepareStatement(query)) {
-                ps.setString(1, spouse.getFirstName());
-                ps.setString(2, spouse.getLastName());
+                ps.setString(1, spouse.getSpouseLastName());
+                ps.setString(2, spouse.getSpouseFirstName());
 //                ps.setString(3, spouse.getDOB());
 //                ps.setString(4, spouse.getSSN());
               //  ps.setLong(5, spouse.getSpouseId()); // Assuming SpouseID is part of Spouse model

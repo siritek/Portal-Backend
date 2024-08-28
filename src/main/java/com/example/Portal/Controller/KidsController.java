@@ -11,25 +11,25 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/kids")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("http://localhost:3001")
 public class KidsController {
 
 
     private KidsServiceImpl kidsService = new KidsServiceImpl();
 
     @PostMapping("/add")
-    public ResponseEntity<?> add(@RequestBody Kids kid) {
+    public ResponseEntity<?> add(@RequestBody List<Kids> kids) {
         try {
             // Log the received JSON for debugging
-            String json = new ObjectMapper().writeValueAsString(kid);
+            String json = new ObjectMapper().writeValueAsString(kids);
             System.out.println("Received this JSON from client for Kid: " + json);
 
-            // Save the kid
-            kidsService.saveKid(kid);
+            // Save the lists of kids
+            kidsService.saveKids(kids);
             System.out.println("Connection reached KidsController");
 
-            // Return the kid object and a success message
-            return ResponseEntity.status(HttpStatus.CREATED).body(kid);
+            // Return the list of kid object and a success message
+            return ResponseEntity.status(HttpStatus.CREATED).body(kids);
 
         } catch (Exception e) {
             System.out.println("Exception in KidsController: " + e);

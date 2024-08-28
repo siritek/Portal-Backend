@@ -10,11 +10,11 @@ public interface KidsService {
     /**
      * Save a new kid or update an existing kid.
      *
-     * @param kid the kid object to be saved
+     * @param kids the kid object to be saved
      * @return the saved kid object
      * @throws SQLException if there is an error with the database operation
      */
-    Kids saveKid(Kids kid) throws SQLException;
+    List<Kids> saveKids(List<Kids> kids) throws SQLException;
 
     /**
      * Retrieve all kids from the database.

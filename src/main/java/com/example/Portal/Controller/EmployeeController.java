@@ -38,7 +38,6 @@
 
 
 package com.example.Portal.Controller;
-
 import com.example.Portal.Model.Employee;
 import com.example.Portal.Service.EmployeeServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -51,7 +50,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/employee")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("http://localhost:3001")
 public class EmployeeController {
 
     @Autowired

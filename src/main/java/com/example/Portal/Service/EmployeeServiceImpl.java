@@ -12,9 +12,89 @@ import java.util.ArrayList;
 import java.util.List;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.UUID;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
+
+
+//    @Override
+//    public String saveEmployee(Employee employee) {
+//        if (employee == null) {
+//            throw new IllegalArgumentException("Employee cannot be null");
+//        }
+//
+//        Connection con = null;
+//        PreparedStatement ps = null;
+//
+//        try {
+//            con = DBConn.getMyConnection();
+//            if (con == null) {
+//                throw new SQLException("Failed to establish a database connection");
+//            }
+//
+//            // Assuming EmployeeID is already set in the Employee object
+//            String employeeID = employee.getEmployeeID();
+//            if (employeeID.equals("0"))  {
+//                throw new SQLException("EmployeeID cannot be zero or null");
+//            }
+//
+//            // Insert into the employee table
+//            String sql = "INSERT INTO employee (EmployeeID, FirstName, LastName, DOB, PersonalEmail, SSN, PhoneNumber, HomeAddress, MaritalStatus, DrivingLicense, LicenseExpDate, PassportNumber, PassportExpDate, VisaStatus, VisaExpDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+//
+//            ps = con.prepareStatement(sql);
+//
+//            ps.setString(1, employeeID);
+//            ps.setString(2, checkString(employee.getFirstName(), "FirstName"));
+//            ps.setString(3, checkString(employee.getLastName(), "LastName"));
+//
+//            // Convert String DOB to java.sql.Date
+//            String dobString = employee.getDOB();
+//            if (dobString != null) {
+//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//                java.util.Date date = sdf.parse(dobString);
+//                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+//                ps.setDate(4, sqlDate);
+//            } else {
+//                ps.setNull(4, java.sql.Types.DATE);
+//            }
+//
+//            ps.setString(5, checkString(employee.getPersonalEmail(), "PersonalEmail"));
+//            ps.setString(6, checkString(employee.getSSN(), "SSN"));
+//            ps.setString(7, checkString(employee.getPhoneNumber(), "PhoneNumber"));
+//            ps.setString(8, checkString(employee.getHomeAddress(), "HomeAddress"));
+//            ps.setString(9, checkString(employee.getMaritalStatus(), "MaritalStatus"));
+//            ps.setString(10, checkString(employee.getDrivingLicenseNumber(), "DrivingLicense"));
+//            ps.setString(11, checkString(employee.getDrivingLicenseExpiryDate(), "LicenseExpDate"));
+//            ps.setString(12, checkString(employee.getPassportNumber(), "PassportNumber"));
+//            ps.setString(13, checkString(employee.getPassportExpiryDate(), "PassportExpDate"));
+//            ps.setString(14, checkString(employee.getVisaStatus(), "VisaStatus"));
+//            ps.setString(15, checkString(employee.getVisaExpiryDate(), "VisaExpDate"));
+//
+//            ps.executeUpdate();
+//
+//        } catch (SQLException | ParseException e) {
+//            System.out.println("Exception in saveEmployee method: " + e);
+//        } finally {
+//            // Close resources in the finally block to ensure they are closed even if an exception occurs
+//            try {
+//                if (ps != null) ps.close();
+//                if (con != null) con.close();
+//            } catch (SQLException e) {
+//                System.out.println("Exception closing resources: " + e);
+//            }
+//        }
+//        return null;
+//    }
+
+//    private String checkString(String value, String fieldName) {
+//        if (value == null || value.isEmpty()) {
+//            throw new IllegalArgumentException(fieldName + " cannot be null or empty");
+//        }
+//        return value;
+//    }
+
+
 
     @Override
     public String saveEmployee(Employee employee) {
@@ -31,15 +111,22 @@ public class EmployeeServiceImpl implements EmployeeService {
                 throw new SQLException("Failed to establish a database connection");
             }
 
-            String sql = "INSERT INTO employee (EmployeeID, FirstName, LastName, DOB, PersonalEmail, SSN, PhoneNumber, HomeAddress, MaritalStatus, Company, DrivingLicenseNumber, LicenseExpDate, PassportNumber, PassportExpDate, VisaStatus, VisaExpDate, Kids ) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)";
+            // Generate EmployeeID - assuming a prefix "EMP" and a unique identifier
+            String employeeID = "EMP" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+
+            // Hardcode the Company field
+            String company = "Siritek";
+
+            String sql = "INSERT INTO employee (EmployeeID, FirstName, LastName, DOB, PersonalEmail, SSN, PhoneNumber, HomeAddress, MaritalStatus, DrivingLicense, LicenseExpDate, PassportNumber, PassportExpDate, VisaStatus, VisaExpDate, Company) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             ps = con.prepareStatement(sql);
 
-            ps.setString(1, checkString(employee.getEmployeeID(), "EmployeeID"));
+            // Set the auto-generated EmployeeID
+            ps.setString(1, employeeID);
             ps.setString(2, checkString(employee.getFirstName(), "FirstName"));
             ps.setString(3, checkString(employee.getLastName(), "LastName"));
 
             // Convert String DOB to java.sql.Date
-            String dobString = employee.getDOB();
+            String dobString = employee.getDob();
             if (dobString != null) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 java.util.Date date = sdf.parse(dobString);
@@ -50,21 +137,54 @@ public class EmployeeServiceImpl implements EmployeeService {
             }
 
             ps.setString(5, checkString(employee.getPersonalEmail(), "PersonalEmail"));
-            ps.setString(6, checkString(employee.getSSN(), "SSN"));
+            ps.setString(6, checkString(employee.getSsn(), "SSN"));
             ps.setString(7, checkString(employee.getPhoneNumber(), "PhoneNumber"));
             ps.setString(8, checkString(employee.getHomeAddress(), "HomeAddress"));
             ps.setString(9, checkString(employee.getMaritalStatus(), "MaritalStatus"));
-            ps.setString(10, checkString(employee.getCompany(), "Company"));
-            ps.setString(11,checkString(employee.getDrivingLicenseNumber(), "DrivingLicenseNumber"));
-            ps.setString(12,checkString(employee.getDrivingLicenseExpiryDate(), "LicenseExpDate"));
-            ps.setString(13,checkString(employee.getPassportNumber(), "PassportNumber"));
-            ps.setString(14,checkString(employee.getPassportExpiryDate(), "PassportExpDate"));
-            ps.setString(15,checkString(employee.getVisaStatus(), "VisaStatus"));
-            ps.setString(16,checkString(employee.getVisaExpiryDate(), "VisaExpDate"));
-            ps.setString(17,checkString(employee.getKids(), "Kids"));
+            ps.setString(10, checkString(employee.getDrivingLicenseNumber(), "DrivingLicense"));
 
+            // Convert DrivingLicenseExpiryDate to java.sql.Date
+            String drivingLicenseExpiryDateString = employee.getDrivingLicenseExpiryDate();
+            if (drivingLicenseExpiryDateString != null) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                java.util.Date date = sdf.parse(drivingLicenseExpiryDateString);
+                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+                ps.setDate(11, sqlDate);
+            } else {
+                ps.setNull(11, java.sql.Types.DATE);
+            }
+
+            ps.setString(12, checkString(employee.getPassportNumber(), "PassportNumber"));
+
+            // Convert PassportExpiryDate to java.sql.Date
+            String passportExpiryDateString = employee.getPassportExpiryDate();
+            if (passportExpiryDateString != null) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                java.util.Date date = sdf.parse(passportExpiryDateString);
+                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+                ps.setDate(13, sqlDate);
+            } else {
+                ps.setNull(13, java.sql.Types.DATE);
+            }
+
+            ps.setString(14, checkString(employee.getVisaStatus(), "VisaStatus"));
+
+            // Convert VisaExpiryDate to java.sql.Date
+            String visaExpiryDateString = employee.getVisaExpiryDate();
+            if (visaExpiryDateString != null) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                java.util.Date date = sdf.parse(visaExpiryDateString);
+                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+                ps.setDate(15, sqlDate);
+            } else {
+                ps.setNull(15, java.sql.Types.DATE);
+            }
+
+            ps.setString(16, company); // Hardcoded company
 
             ps.executeUpdate();
+
+            return employeeID; // Return the generated EmployeeID
 
         } catch (SQLException | ParseException e) {
             System.out.println("Exception in saveEmployee method: " + e);
@@ -79,6 +199,70 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         return null;
     }
+
+
+//    @Override
+//    public String saveEmployee(Employee employee) {
+//        if (employee == null) {
+//            throw new IllegalArgumentException("Employee cannot be null");
+//        }
+//
+//        Connection con = null;
+//        PreparedStatement ps = null;
+//
+//        try {
+//            con = DBConn.getMyConnection();
+//            if (con == null) {
+//                throw new SQLException("Failed to establish a database connection");
+//            }
+//
+//            String sql = "INSERT INTO employee ( FirstName, LastName, DOB, PersonalEmail, SSN, PhoneNumber, HomeAddress, MaritalStatus, DrivingLicense, LicenseExpDate, PassportNumber, PassportExpDate, VisaStatus, VisaExpDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?)";
+//            ps = con.prepareStatement(sql);
+//
+//            ps.setString(1, checkString(employee.getEmployeeID(), "EmployeeID"));
+//            ps.setString(1, checkString(employee.getFirstName(), "FirstName"));
+//            ps.setString(2, checkString(employee.getLastName(), "LastName"));
+//
+//            // Convert String DOB to java.sql.Date
+//            String dobString = employee.getDOB();
+//            if (dobString != null) {
+//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//                java.util.Date date = sdf.parse(dobString);
+//                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+//                ps.setDate(3, sqlDate);
+//            } else {
+//                ps.setNull(3, java.sql.Types.DATE);
+//            }
+//
+//            ps.setString(4, checkString(employee.getPersonalEmail(), "PersonalEmail"));
+//            ps.setString(5, checkString(employee.getSSN(), "SSN"));
+//            ps.setString(6, checkString(employee.getPhoneNumber(), "PhoneNumber"));
+//            ps.setString(7, checkString(employee.getHomeAddress(), "HomeAddress"));
+//            ps.setString(8, checkString(employee.getMaritalStatus(), "MaritalStatus"));
+//            ps.setString(10, checkString(employee.getCompany(), "Company"));
+//            ps.setString(9,checkString(employee.getDrivingLicenseNumber(), "DrivingLicense"));
+//            ps.setString(10,checkString(employee.getDrivingLicenseExpiryDate(), "LicenseExpDate"));
+//            ps.setString(11,checkString(employee.getPassportNumber(), "PassportNumber"));
+//            ps.setString(12,checkString(employee.getPassportExpiryDate(), "PassportExpDate"));
+//            ps.setString(13,checkString(employee.getVisaStatus(), "VisaStatus"));
+//            ps.setString(14,checkString(employee.getVisaExpiryDate(), "VisaExpDate"));
+//
+//
+//            ps.executeUpdate();
+//
+//        } catch (SQLException | ParseException e) {
+//            System.out.println("Exception in saveEmployee method: " + e);
+//        } finally {
+//            // Close resources in the finally block to ensure they are closed even if an exception occurs
+//            try {
+//                if (ps != null) ps.close();
+//                if (con != null) con.close();
+//            } catch (SQLException e) {
+//                System.out.println("Exception closing resources: " + e);
+//            }
+//        }
+//        return null;
+//    }
 
     @Override
     public List<Employee> getAllemployee() {
@@ -99,16 +283,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 
             while (rs.next()) {
                 Employee employee = new Employee();
-                employee.setEmployeeID(rs.getString("EmployeeID"));
+              //  employee.setEmployeeID(rs.getString("EmployeeID"));
                 employee.setFirstName(rs.getString("FirstName"));
                 employee.setLastName(rs.getString("LastName"));
-                employee.setDOB(rs.getDate("DOB").toString());
+                employee.setDob(rs.getDate("DOB").toString());
                 employee.setPersonalEmail(rs.getString("PersonalEmail"));
-                employee.setSSN(rs.getString("SSN"));
+                employee.setSsn(rs.getString("SSN"));
                 employee.setPhoneNumber(rs.getString("PhoneNumber"));
                 employee.setHomeAddress(rs.getString("HomeAddress"));
                 employee.setMaritalStatus(rs.getString("MaritalStatus"));
-                employee.setCompany(rs.getString("Company"));
+               // employee.setCompany(rs.getString("Company"));
 
 
                 employees.add(employee);
